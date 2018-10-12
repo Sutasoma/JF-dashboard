@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => '',
 	'database' => 'ci_adminlte',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => 'jk06e_',
+	'dbprefix' => 'jf_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
