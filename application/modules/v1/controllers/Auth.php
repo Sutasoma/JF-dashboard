@@ -46,9 +46,18 @@ class Auth extends MY_REST_Controller {
 				REST_Controller::HTTP_INTERNAL_SERVER_ERROR
 			);
 		}
-			
+
+        $return = [
+            'nama' => $log_in->nama,
+            'email' => $log_in->email,
+            'hp' => $log_in->hp,
+            'username' => $log_in->username,
+            'status' => $log_in->status,
+            'level' => $log_in->level
+        ];
+        
 		return $this->set_response(
-			array(),
+			$return,
 			$this->lang->line('text_login_success'),
 			REST_Controller::HTTP_OK
 		);

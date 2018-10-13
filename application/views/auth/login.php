@@ -22,30 +22,32 @@
                         <div class="card-body">
                             <h1>Login</h1>
                             <p class="text-muted">Sign In to your account</p>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="icon-user"></i>
-                                    </span>
+                            <form id="formLogin" method="POST">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" name="username" id="username" placeholder="Username">
                                 </div>
-                                <input class="form-control" type="text" placeholder="Username">
-                            </div>
-                            <div class="input-group mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="icon-lock"></i>
-                                    </span>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="password" name="password" id="password" placeholder="Password">
                                 </div>
-                                <input class="form-control" type="password" placeholder="Password">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button class="btn btn-primary px-4" type="button">Login</button>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-primary px-4" type="button" id="btnLogin">Login</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                                    </div>
                                 </div>
-                                <div class="col-6 text-right">
-                                    <button class="btn btn-link px-0" type="button">Forgot password?</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
@@ -68,6 +70,31 @@
 <script src="<?php echo base_url('assets/node_modules/pace-progress/pace.min.js')?>"></script>
 <script src="<?php echo base_url('assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js')?>"></script>
 <script src="<?php echo base_url('assets/node_modules/@coreui/coreui/dist/js/coreui.min.js')?>"></script>
+
+<script type="text/javascript">
+
+    $("#btnLogin").click(function() {
+        var btn = $(this)
+        btn.blur()
+        var form = $("#formLogin").serialize();
+        $.ajax({
+            url: "<?php echo site_url();?>/auth/proses_login",
+            type: "POST",
+            data: form,
+            beforeSend: function() {
+                btn.prop("disabled", true)
+                btn.text("Processing ...")
+            },
+            success: function (response) {
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                
+            }
+        });
+    });
+
+</script>
 
 </body>
 </html>
